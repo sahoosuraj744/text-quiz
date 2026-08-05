@@ -1,0 +1,24 @@
+import user, { User } from '../model/User.js'
+import { getAuth } from '@clerk/express'
+
+export const getStats = async (req, res) => {
+    try {
+        const userId = getAuth(req)
+        if (!userId) {
+            res.status(401).json({ success: false, message: "User doesnot found" })
+        }
+        const totalUsers = await User.countDocuments()
+        const loggedInUsers = await User.countDocuments({
+            isLoggedIn: true
+        })
+        res.json({
+            totalUsers,
+            loggedInUsers: loggedInUsers
+            loggedInPercentage: totalUsers > 0 ? ((loggedInUsers / totalUsers) * 100).toFixed(2) : '0.00'
+        })
+    } catch (err) {
+        console.log("Admin stats error:", err);
+        res.status(500).json({ success: false, message: "Server doesnot found" })
+
+    }
+}
