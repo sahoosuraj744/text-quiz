@@ -1,4 +1,4 @@
-import user, { User } from '../model/User.js'
+import  { User } from '../model/User.js'
 import { getAuth } from '@clerk/express'
 
 export const getStats = async (req, res) => {
@@ -13,7 +13,7 @@ export const getStats = async (req, res) => {
         })
         res.json({
             totalUsers,
-            loggedInUsers: loggedInUsers
+            loggedInUsers: loggedInUsers,
             loggedInPercentage: totalUsers > 0 ? ((loggedInUsers / totalUsers) * 100).toFixed(2) : '0.00'
         })
     } catch (err) {
