@@ -1,11 +1,11 @@
-import  { User } from '../model/User.js'
+import User from '../model/User.js'
 import { getAuth } from '@clerk/express'
 
 export const getStats = async (req, res) => {
     try {
-        const userId = getAuth(req)
+        const { userId } = getAuth(req)
         if (!userId) {
-            res.status(401).json({ success: false, message: "User doesnot found" })
+            return res.status(401).json({ success: false, message: "Unauthorized Access" })
         }
         const totalUsers = await User.countDocuments()
         const loggedInUsers = await User.countDocuments({

@@ -20,7 +20,6 @@ export const CreatemyResult = async (req, res) => {
 //to get result
 export const getMyResult = async (req, res) => {
     const { userId } = getAuth(req)
-    const result=await Result.find({userId}).sort({createdAt:-1})
-    res.json(result)
-
+    const results=await Result.find({userId}).sort({createdAt:-1})
+    res.json(results)
 }

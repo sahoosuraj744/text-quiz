@@ -1,11 +1,13 @@
-import Navbar from "../components/Navbar"
+import DashBoard from "../components/DashBoard";
+import Navbar from "../components/Navbar";
 
 const DashboardPage = () => {
   return (
     <>
-    <Navbar/>
+      <Navbar />
+      <DashBoard />
     </>
-  )
-}
+  );
+};
 
-export default DashboardPage
+export default DashboardPage;

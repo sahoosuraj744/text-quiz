@@ -51,23 +51,7 @@ const quizSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    quizId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Quiz",
-        required: true
-    },
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true
-    },
-    startedAt: {
-        type: Date,
-        default: Date.now
-    },
-    submittedAt: Date,
-    answers: Array,
-    score: Number
+   
 }, { timestamps: true })
 //
 quizSchema.index({ technology: 1, level: 1 }, { unique: true })

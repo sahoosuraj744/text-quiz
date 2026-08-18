@@ -1,9 +1,10 @@
-import { Routes, Route,Link,useLocation } from "react-router-dom";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import DashboardPage from "./pages/DashboardPage";
-import {useUser} from '@clerk/clerk-react'
+import { useUser } from "@clerk/clerk-react";
+import ListPage from "./pages/ListPage";
 function RequireAuth({ children }) {
-  const {isLoaded, isSignedIn} = useUser();
+  const { isLoaded, isSignedIn } = useUser();
   const location = useLocation();
   if (!isLoaded) {
     <div className="min-h-screen flex items-center justify-center">
@@ -18,7 +19,13 @@ function RequireAuth({ children }) {
             Please sign in to view this page
           </p>
           <div className="flex justify-center">
-            <Link to='/' state={{from:location}} className="px-4 py-2 text-sm rounded-full bg-purple-600 text-white shadow-sm hover:bg-purple-700 hover:shadow-md transition-all duration-300 ease-in-out animate-pulse" >HOME</Link>
+            <Link
+              to="/"
+              state={{ from: location }}
+              className="px-4 py-2 text-sm rounded-full bg-purple-600 text-white shadow-sm hover:bg-purple-700 hover:shadow-md transition-all duration-300 ease-in-out animate-pulse"
+            >
+              HOME
+            </Link>
           </div>
         </div>
       </div>
@@ -30,11 +37,22 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/dashboard" element={
-        <RequireAuth>
-          <DashboardPage/>
-        </RequireAuth>
-      } />
+      <Route
+        path="/dashboard"
+        element={
+          <RequireAuth>
+            <DashboardPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/list"
+        element={
+          <RequireAuth>
+            <ListPage />
+          </RequireAuth>
+        }
+      />
     </Routes>
   );
 };
