@@ -9,9 +9,7 @@ import resultRoutes from './routes/result.js'
 const app = express()
 
 app.use(clerkMiddleware())
-app.use(cors(
-    origin:'http://localhost//'
-))
+app.use(cors())
 app.use(express.json())
 connectDb()
 const port = process.env.PORT || 3000
