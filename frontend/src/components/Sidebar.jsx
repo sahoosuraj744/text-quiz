@@ -31,7 +31,7 @@ import {
   PlayCircle,
   Brain,
 } from "lucide-react";
-import { useApi } from "../../services/api/api";
+import { useApi } from "../services/api/api";
 import { useUser, useClerk } from "@clerk/clerk-react";
 import {
   sidebarStyles,

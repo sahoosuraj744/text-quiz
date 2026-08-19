@@ -8,7 +8,7 @@ export const CreatemyResult = async (req, res) => {
         if (!userId) {
             return res.status(401).json({ success: false, error: "Unauthorized" })
         }
-        const result = await result.create({
+        const result = await Result.create({
             ...req.body, userId
         })
         res.json(result)
